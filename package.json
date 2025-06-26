@@ -4,12 +4,13 @@
     "version": "1.0.1",
     "author": {
         "name": "Pukorufu",
+        "url": "https://github.com/puk06",
         "email": "pukorufu@pukosrv.net"
     },
     "unity" : "2022.3",
     "description" : "シーン上で簡単にBlendShapeアニメーションを作成、編集することが出来るUnityの拡張エディター",
     "vpmDependencies" : {
-        "com.vrchat.avatars" : ">3.7.0"
+        "com.vrchat.avatars" : ">=3.2.0"
     },
     "url" : "https://github.com/puk06/SmileyClip/releases/download/v1.0.1/net.puk06.smiley-clip-v1.0.1.zip?"
 }
