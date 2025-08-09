@@ -11,7 +11,7 @@ namespace SmileyClip
     public class SmileyClip : EditorWindow
     {
         private const bool BETA_VERSION_BOOL = false;
-        private const string CURRENT_VERSION = "v1.0.1";
+        private const string CURRENT_VERSION = "v1.0.2";
         private const string AUTHOR = "Ç’Ç±ÇÈÇ”";
 
         private const string BLENDSHAPE_PREFIX = "blendShape.";
@@ -339,7 +339,7 @@ namespace SmileyClip
             if (SkinnedMeshRendererUtils.IsNull(selectedRenderer))
             {
                 GuiUtils.ShowDialog("RendererÇ™å©Ç¬Ç©ÇÁÇ»Ç©Ç¡ÇΩÇΩÇﬂÅABlendShapeÇÃï€ë∂Ç…é∏îsÇµÇ‹ÇµÇΩÅB");
-            } 
+            }
             else
             {
                 for (int i = 0; i < selectedRenderer.sharedMesh.blendShapeCount; i++)
@@ -444,13 +444,15 @@ namespace SmileyClip
                 string relativePath = AnimationUtility.CalculateTransformPath(selectedRenderer.transform, targetObject.transform);
 
                 string[] visemeBlendShapes = null;
+                string[] blinkBlendShapes = null;
 
                 if (vrcMode)
                 {
                     var avatarDescriptorObject = sameAsRoot ? VRChatUtils.GetAvatarDescriptor(targetObject) : avatarDescriptor;
                     if (avatarDescriptorObject != null)
-                    { 
+                    {
                         visemeBlendShapes = VRChatUtils.GetAllVisemeBlendShapes(avatarDescriptorObject);
+                        blinkBlendShapes = VRChatUtils.GetAllBlinkBlendShapes(avatarDescriptorObject);
                     }
                 }
 
@@ -458,6 +460,7 @@ namespace SmileyClip
                 {
                     var blendShapeName = selectedRenderer.sharedMesh.GetBlendShapeName(i);
                     if (visemeBlendShapes != null && visemeBlendShapes.Contains(blendShapeName)) continue;
+                    if (blinkBlendShapes != null && blinkBlendShapes.Contains(blendShapeName)) continue;
 
                     float weight = selectedRenderer.GetBlendShapeWeight(i);
                     if (!writeDefaults && originalBlendShapes[i] == weight) continue;
